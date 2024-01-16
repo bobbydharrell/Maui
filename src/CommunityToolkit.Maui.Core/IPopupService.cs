@@ -54,4 +54,9 @@ public interface IPopupService
 	/// <param name="token"><see cref="CancellationToken"/> </param>
 	/// <returns>A <see cref="Task"/> that can be awaited to return the result of the <see cref="CommunityToolkit.Maui.Core.IPopup"/> once it has been dismissed.</returns>
 	Task<object?> ShowPopupAsync<TViewModel>(TViewModel viewModel, CancellationToken token = default) where TViewModel : INotifyPropertyChanged;
+
+	/// <summary>
+	/// Allows User to Look up Mapped Popup by ViewModel
+	/// </summary>
+	Popup GetPopup<TViewModel>();
 }
