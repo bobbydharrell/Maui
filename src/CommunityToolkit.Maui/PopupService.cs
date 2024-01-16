@@ -146,4 +146,23 @@ public class PopupService : IPopupService
 
 		return popup;
 	}
+
+	/// <summary>
+	/// Allows users to look up mappings for custom Popup Service implementations.
+	/// </summary>
+	/// <returns></returns>
+	/// <exception cref="InvalidOperationException"></exception>
+	public Popup GetPopup<TViewModel>()
+	{
+		Type viewModelType = typeof(TViewModel);
+		var popup = serviceProvider.GetService(viewModelToViewMappings[viewModelType]) as Popup;
+
+		if(popup is null)
+		{
+			throw new InvalidOperationException(
+				$"Unable to resolve popup type for {viewModelType} please make sure that you have called {nameof(AddTransientPopup)}");
+		}
+
+		return popup;
+	}
 }
